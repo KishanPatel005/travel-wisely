@@ -9,12 +9,15 @@ import CategoryFilter from "@/components/CategoryFilter";
 import SubmitTipModal from "@/components/SubmitTipModal";
 import EmptyState from "@/components/EmptyState";
 import FloatingMapButton from "@/components/FloatingMapButton";
+import Footer from "@/components/Footer";
+import MapViewOverlay from "@/components/MapViewOverlay";
 import { locations } from "@/data/locations";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [deepDive, setDeepDive] = useState(false);
   const [tipModalOpen, setTipModalOpen] = useState(false);
+  const [mapOpen, setMapOpen] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState("all");
 
   const handleTagClick = (tag: string) => {
@@ -42,7 +45,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header onMapViewClick={() => setMapOpen(true)} />
       <HeroSection searchQuery={searchQuery} onSearchChange={setSearchQuery} onTagClick={handleTagClick} />
 
       <section className="container mx-auto px-4 pb-24">
@@ -82,7 +85,8 @@ const Index = () => {
         )}
       </section>
 
-      <FloatingMapButton />
+      <FloatingMapButton onClick={() => setMapOpen(true)} />
+      <MapViewOverlay isOpen={mapOpen} onClose={() => setMapOpen(false)} />
       <SubmitTipModal open={tipModalOpen} onClose={() => setTipModalOpen(false)} />
 
       {/* Mobile FAB for submit tip */}
@@ -94,6 +98,8 @@ const Index = () => {
         <Plus size={18} />
         Tip
       </motion.button>
+
+      <Footer />
     </div>
   );
 };
