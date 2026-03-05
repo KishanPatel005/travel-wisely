@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import LocationCard from "@/components/LocationCard";
 import CultureToggle from "@/components/CultureToggle";
+import CategoryFilter from "@/components/CategoryFilter";
 import SubmitTipModal from "@/components/SubmitTipModal";
 import EmptyState from "@/components/EmptyState";
 import FloatingMapButton from "@/components/FloatingMapButton";
@@ -14,21 +15,30 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [deepDive, setDeepDive] = useState(false);
   const [tipModalOpen, setTipModalOpen] = useState(false);
+  const [categoryFilter, setCategoryFilter] = useState("all");
 
   const handleTagClick = (tag: string) => {
     setSearchQuery(tag);
   };
 
   const filtered = useMemo(() => {
-    if (!searchQuery.trim()) return locations;
-    const q = searchQuery.toLowerCase();
-    return locations.filter(
-      (loc) =>
-        loc.locationName.toLowerCase().includes(q) ||
-        loc.region.toLowerCase().includes(q) ||
-        loc.category.some((c) => c.toLowerCase().includes(q))
-    );
-  }, [searchQuery]);
+    let result = locations;
+    if (categoryFilter !== "all") {
+      result = result.filter((loc) =>
+        loc.category.some((c) => c === categoryFilter)
+      );
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(
+        (loc) =>
+          loc.locationName.toLowerCase().includes(q) ||
+          loc.region.toLowerCase().includes(q) ||
+          loc.category.some((c) => c.toLowerCase().includes(q))
+      );
+    }
+    return result;
+  }, [searchQuery, categoryFilter]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -36,26 +46,29 @@ const Index = () => {
       <HeroSection searchQuery={searchQuery} onSearchChange={setSearchQuery} onTagClick={handleTagClick} />
 
       <section className="container mx-auto px-4 pb-24">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-2xl font-bold text-foreground">
-              {searchQuery ? `Results for "${searchQuery}"` : "Popular Destinations"}
-            </h2>
-            <p className="text-sm text-muted-foreground mt-1">
-              {filtered.length} location{filtered.length !== 1 ? "s" : ""} found
-            </p>
+        <div className="flex flex-col gap-4 mb-8">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground">
+                {searchQuery ? `Results for "${searchQuery}"` : "Popular Destinations"}
+              </h2>
+              <p className="text-sm text-muted-foreground mt-1">
+                {filtered.length} location{filtered.length !== 1 ? "s" : ""} found
+              </p>
+            </div>
+            <div className="flex items-center gap-4">
+              <CultureToggle deepDive={deepDive} onToggle={setDeepDive} />
+              <motion.button
+                whileTap={{ scale: 0.93 }}
+                onClick={() => setTipModalOpen(true)}
+                className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+              >
+                <Plus size={16} />
+                Submit a Tip
+              </motion.button>
+            </div>
           </div>
-          <div className="flex items-center gap-4">
-            <CultureToggle deepDive={deepDive} onToggle={setDeepDive} />
-            <motion.button
-              whileTap={{ scale: 0.93 }}
-              onClick={() => setTipModalOpen(true)}
-              className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-secondary transition-colors"
-            >
-              <Plus size={16} />
-              Submit a Tip
-            </motion.button>
-          </div>
+          <CategoryFilter active={categoryFilter} onChange={setCategoryFilter} />
         </div>
 
         {filtered.length > 0 ? (
