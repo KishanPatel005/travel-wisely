@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Check, ShieldCheck, Zap, Globe, MessageSquare, Download, History, EyeOff, Award } from "lucide-react";
+import { Check, ShieldCheck, Zap, Globe, MessageSquare, Download, History, EyeOff, Award, Sparkles, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -15,37 +15,37 @@ const PricingPage = () => {
 
     const features = [
         {
+            title: "AI 'Respect Vision' Scanner",
+            desc: "Upload a photo of your outfit or the venue for an instant AI-powered etiquette rating.",
+            icon: Sparkles,
+            color: "text-purple-500",
+            bg: "bg-purple-500/10"
+        },
+        {
+            title: "2X Submission Points",
+            desc: "Earn double Respect Points for every valid culture tip or photo you contribute to our map.",
+            icon: Star,
+            color: "text-amber-500",
+            bg: "bg-amber-500/10"
+        },
+        {
             title: "Smart Proximity Alerts",
             desc: '100m geofence notifications for "Live Etiquette." No more googling at the gate.',
             icon: Zap,
-            color: "text-amber-500",
-            bg: "bg-amber-500/10"
+            color: "text-blue-500",
+            bg: "bg-blue-500/10"
+        },
+        {
+            title: "Local Hero AI Chat",
+            desc: '24/7 AI support for etiquette questions. "Is it okay to wear this here?" – Instant reassurance.',
+            icon: MessageSquare,
+            color: "text-emerald-500",
+            bg: "bg-emerald-500/10"
         },
         {
             title: "Offline Culture Mode",
             desc: "Download guides & maps for an entire city. Essential for foreign tourists or low-network areas.",
             icon: Download,
-            color: "text-blue-500",
-            bg: "bg-blue-500/10"
-        },
-        {
-            title: 'The "Why" Behind Rules',
-            desc: 'Deep-dive cultural history for every Do & Don\'t. Appealing to "Slow Travelers" and history buffs.',
-            icon: History,
-            color: "text-emerald-500",
-            bg: "bg-emerald-500/10"
-        },
-        {
-            title: "Local Hero Chat",
-            desc: '24/7 AI or Peer support for etiquette questions. "Is it okay to wear this here?" – Instant reassurance.',
-            icon: MessageSquare,
-            color: "text-purple-500",
-            bg: "bg-purple-500/10"
-        },
-        {
-            title: "Ad-Free Exploration",
-            desc: "Remove all sponsored pins and banner ads. A cleaner, premium aesthetic.",
-            icon: EyeOff,
             color: "text-rose-500",
             bg: "bg-rose-500/10"
         },
