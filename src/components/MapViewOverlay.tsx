@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, X, Info, ShieldCheck, AlertTriangle } from "lucide-react";
+import { MapPin, X, Info, ShieldCheck, AlertTriangle, MessageSquare } from "lucide-react";
 import { locations, Location } from "@/data/locations";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -171,6 +171,25 @@ const MapViewOverlay = ({ isOpen, onClose }: MapViewOverlayProps) => {
                                                 </div>
 
                                                 <div className="space-y-4">
+                                                    {selectedLocation.phrases && selectedLocation.phrases.length > 0 && (
+                                                        <div className="p-5 rounded-2xl bg-blue-500/5 border border-blue-500/10">
+                                                            <h4 className="flex items-center gap-2 font-bold text-blue-600 mb-3 text-sm">
+                                                                <MessageSquare size={16} /> Language & Manners
+                                                            </h4>
+                                                            <div className="space-y-3">
+                                                                {selectedLocation.phrases.map((p, i) => (
+                                                                    <div key={i} className="flex justify-between items-center bg-background/50 p-2 rounded-lg border border-border/50">
+                                                                        <div>
+                                                                            <p className="font-bold text-sm">{p.phrase}</p>
+                                                                            <p className="text-[10px] text-muted-foreground italic px-1">"{p.pronunciation}"</p>
+                                                                        </div>
+                                                                        <p className="text-xs font-medium text-blue-600/80">{p.meaning}</p>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    )}
+
                                                     <div className="p-5 rounded-2xl bg-accent/5 border border-accent/10 relative overflow-hidden">
                                                         <div className="absolute top-0 right-0 p-3 opacity-10">
                                                             <Info size={48} className="text-accent" />

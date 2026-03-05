@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Pricing from "./pages/Pricing";
 import Blog from "./pages/Blog";
 import SignIn from "./pages/SignIn";
+import NotificationTicker from "./components/NotificationTicker";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -15,7 +16,8 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
-      <Sonner />
+      <Sonner position="bottom-center" theme="dark" />
+      <NotificationTicker />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />

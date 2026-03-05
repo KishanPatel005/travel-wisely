@@ -22,6 +22,7 @@ export interface Location {
   donts: LocationRule[];
   localInsight: string;
   deepDive: string;
+  phrases?: { phrase: string; meaning: string; pronunciation: string }[];
 }
 
 export const locations: Location[] = [
@@ -45,6 +46,10 @@ export const locations: Location[] = [
     ],
     localInsight: "Built in the 15th century by Bai Harir, a superintendent in Sultan Begada's harem. The vav features a stunning blend of Hindu and Islamic architecture.",
     deepDive: "The stepwell was designed not just for water storage, but as a cool subterranean retreat. The temperature drops significantly as you descend, making it a natural air-conditioning system used for centuries.",
+    phrases: [
+      { phrase: "Kem cho?", meaning: "How are you?", pronunciation: "Kem-cho" },
+      { phrase: "Aabhar", meaning: "Thank you", pronunciation: "Aa-bhar" }
+    ]
   },
   {
     id: "2",
@@ -87,6 +92,10 @@ export const locations: Location[] = [
     ],
     localInsight: "The shrine has over 10,000 vermillion torii gates, each donated by businesses praying for prosperity. The hike to the summit takes about 2 hours.",
     deepDive: "Inari is the Shinto god of rice, sake, and prosperity. Foxes (kitsune) are Inari's messengers, which is why fox statues appear throughout. The shrine dates to 711 AD, predating Kyoto's establishment as the capital.",
+    phrases: [
+      { phrase: "Konnichiwa", meaning: "Hello/Good day", pronunciation: "Kon-ni-chi-wa" },
+      { phrase: "Arigato gozaimasu", meaning: "Thank you (polite)", pronunciation: "A-ri-ga-to Go-zai-mas" }
+    ]
   },
   {
     id: "4",
@@ -108,6 +117,10 @@ export const locations: Location[] = [
     ],
     localInsight: "The weekend market has over 15,000 stalls across 35 acres. It's one of the world's largest outdoor markets.",
     deepDive: "Chatuchak started in 1942 as a small flea market. The market is divided into 27 sections, each specializing in different goods. Section 2-4 is where locals go for the best food.",
+    phrases: [
+      { phrase: "Sawatdee krab/ka", meaning: "Hello (Male/Female)", pronunciation: "Sa-wat-dee-krab" },
+      { phrase: "Khob khun krab/ka", meaning: "Thank you", pronunciation: "Kob-kun-krab" }
+    ]
   },
   {
     id: "5",

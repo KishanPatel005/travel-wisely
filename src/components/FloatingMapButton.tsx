@@ -15,7 +15,7 @@ const FloatingMapButton = ({ onClick }: FloatingMapButtonProps) => {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.9 }}
       onClick={onClick}
-      className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-5 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm shadow-lg hover:opacity-90 transition-opacity"
+      className="fixed bottom-24 md:bottom-6 right-6 z-40 flex items-center gap-2 px-5 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm shadow-lg hover:opacity-90 transition-opacity"
     >
       <Map size={18} />
       <span className="hidden sm:inline">View Map</span>

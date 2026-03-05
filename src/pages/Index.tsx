@@ -11,6 +11,8 @@ import EmptyState from "@/components/EmptyState";
 import FloatingMapButton from "@/components/FloatingMapButton";
 import Footer from "@/components/Footer";
 import MapViewOverlay from "@/components/MapViewOverlay";
+import CommunityWins from "@/components/CommunityWins";
+import BottomNav from "@/components/BottomNav";
 import { locations } from "@/data/locations";
 
 const Index = () => {
@@ -85,6 +87,8 @@ const Index = () => {
         )}
       </section>
 
+      <CommunityWins />
+
       <FloatingMapButton onClick={() => setMapOpen(true)} />
       <MapViewOverlay isOpen={mapOpen} onClose={() => setMapOpen(false)} />
       <SubmitTipModal open={tipModalOpen} onClose={() => setTipModalOpen(false)} />
@@ -93,12 +97,13 @@ const Index = () => {
       <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={() => setTipModalOpen(true)}
-        className="md:hidden fixed bottom-6 left-6 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-accent text-accent-foreground font-medium text-sm shadow-lg"
+        className="md:hidden fixed bottom-24 left-6 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-accent text-accent-foreground font-medium text-sm shadow-lg"
       >
         <Plus size={18} />
         Tip
       </motion.button>
 
+      <BottomNav onMapViewClick={() => setMapOpen(true)} />
       <Footer />
     </div>
   );
